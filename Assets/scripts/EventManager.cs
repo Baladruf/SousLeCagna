@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour {
-
-    //test git
+public class EventManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +11,6 @@ public class Test : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print("delta time test = " + Time.deltaTime);
+		
 	}
 }
