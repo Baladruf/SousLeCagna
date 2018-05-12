@@ -8,8 +8,11 @@ public class TimeManager : MonoBehaviour {
     public static TimeManager instance;
     private EventManager eventManager;
 
-    public float timeDay = 20;
-    private float timer = 0;
+    public float nbSecondForOneMinuteInGame = 1.5f;
+    private int minuteInGame = 0;
+    private float timer;
+    public int hourBeginDay = 5, hourEndDay = 23;
+    public int minuteBeginDay = 0, minuteEndDay = 0;
     public float speedTime {
         get
         {
@@ -26,8 +29,8 @@ public class TimeManager : MonoBehaviour {
         instance = this;
         eventManager = GetComponent<EventManager>();
         InitButtonTime();
-        timeDay /= 24 * 60;
-        print("time day"+timeDay);
+        minuteInGame = (hourBeginDay * 60) + minuteBeginDay;
+        eventManager.TimeEvent(minuteInGame);
 	}
 	
 	// Update is called once per frame
@@ -109,7 +112,19 @@ public class TimeManager : MonoBehaviour {
 
     private void TimeInGame()
     {
-        timer += speedTime;
-        print(timer);
+        if (minuteInGame < (hourEndDay * 60) + minuteEndDay)
+        {
+            timer += speedTime;
+            if (timer > nbSecondForOneMinuteInGame)
+            {
+                timer -= nbSecondForOneMinuteInGame;
+                minuteInGame++;
+                eventManager.TimeEvent(minuteInGame);
+            }
+        }
+        else
+        {
+            //fin de journée -> reset du temps / récapitulatif / etc
+        }
     }
 }
