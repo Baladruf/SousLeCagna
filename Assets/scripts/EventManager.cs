@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EventManager : MonoBehaviour {
 
     [SerializeField] Text timerText;
+    [SerializeField] int nbMinuteByPrint = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -19,15 +20,17 @@ public class EventManager : MonoBehaviour {
 
     public void TimeEvent(int minute)
     {
-        timerText.text = ConvertTimeInText(minute);
+        ConvertTimeInText(minute);
     }
 
-    private string ConvertTimeInText(int time)
+    private void ConvertTimeInText(int time)
     {
-        int heure = time / 60;
         int minute = time % 60;
-        string heureS = heure < 10 ? "0" + heure : "" + heure;
-        string minuteS = minute < 10 ? "0" + minute : "" + minute;
-        return heureS + ":" + minuteS;
+        if (minute % nbMinuteByPrint == 0) {
+            int heure = time / 60;
+            string heureS = heure < 10 ? "0" + heure : "" + heure;
+            string minuteS = minute < 10 ? "0" + minute : "" + minute;
+            timerText.text = heureS + ":" + minuteS;
+        }
     }
 }
