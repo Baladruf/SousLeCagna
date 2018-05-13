@@ -16,7 +16,7 @@ public class GroundOption : MonoBehaviour {
     {
         if(mainCamera.targetFollow != null)
         {
-            if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetMouseButtonDown(2))
             {
                 mainCamera.targetFollow = null;
             }
