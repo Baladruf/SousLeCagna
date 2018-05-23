@@ -9,6 +9,14 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private Camera mainCamera;
     public LayerMask layerDrag;
 
+    //property soldier
+    [SerializeField] string nameSoldier;
+    [SerializeField] EnumDefine.RankMilitary rangSoldier;
+    [SerializeField] EnumDefine.Perks[] competence;
+    private List<EnumDefine.Perks> listPerks;
+    private float stress;
+    private float hp;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         print("drag begin");
@@ -36,9 +44,20 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         }
     }
 
+    private void OnMouseDown()
+    {
+        GameManager.instance.soldierSelected = this;
+        //affiche ui
+    }
+
     // Use this for initialization
     void Awake () {
         mainCamera = Camera.main;
+        listPerks = new List<EnumDefine.Perks>();
+        if(competence.Length > 0)
+        {
+            listPerks.AddRange(competence);
+        }
 	}
 	
 	// Update is called once per frame
