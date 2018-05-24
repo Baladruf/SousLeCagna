@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.AI;
 
 public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Vector3 posDepart;
     private Camera mainCamera;
     public LayerMask layerDrag;
+    private NavMeshAgent agent;
 
     //property soldier
     [SerializeField] string nameSoldier;
@@ -16,6 +18,9 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private List<EnumDefine.Perks> listPerks;
     private float stress;
     private float hp;
+
+    private Spot hasTask = null;
+    private bool hasWork = false;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -50,6 +55,16 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         //affiche ui
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (hasTask)
+        {
+            agent.isStopped = true;
+            hasWork = true;
+            hasTask.SetTaskSoldier(this);
+        }
+    }
+
     // Use this for initialization
     void Awake () {
         mainCamera = Camera.main;
@@ -58,10 +73,32 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         {
             listPerks.AddRange(competence);
         }
+        agent = GetComponent<NavMeshAgent>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void SetDestination(Vector3 pos, Spot spot)
+    {
+        if(hasTask != null)
+        {
+            hasTask.FreePlace();
+        }
+        hasTask = spot;
+        agent.SetDestination(pos);
+    }
+
+    public void BackWaitingZone()
+    {
+        if(hasTask != null)
+        {
+            hasTask.FreePlace();
+            //go zone waiting
+        }
+        hasWork = false;
+        hasTask = null;
+    }
 }

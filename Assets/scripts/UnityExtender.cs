@@ -870,6 +870,17 @@ public static class UnityExtender {
 		return test;
 	}
 
+    /// <summary>
+    /// Return a array
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="separator"></param>
+    /// <returns></returns>
+    public static string[] Split(this string message, string separator)
+    {
+        return message.Split(new string[] { separator }, StringSplitOptions.None);
+    }
+
 /* ---------------------- BOOLEAN ---------------------- */
 
    
