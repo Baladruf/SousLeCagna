@@ -11,6 +11,8 @@ public class EnumDefine {
 	
 	public enum Perks
     {
-
+        nothings
     }
+
+
 }
