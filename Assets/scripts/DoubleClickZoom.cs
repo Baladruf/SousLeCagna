@@ -75,6 +75,7 @@ public class DoubleClickZoom : MonoBehaviour {
             else
             {
                 transformTransition = null;
+                rtsCam.targetFollow = transform;
             }
         }
     }
