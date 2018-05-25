@@ -7,37 +7,10 @@ public class Spot : MonoBehaviour {
     [SerializeField] int nbPlaceSoldier = 1;
     [SerializeField] Transform[] posForSoldiers;
     private int actualPlace = 0;
-    [SerializeField] bool spotLooping = false;
-    private Coroutine[] listTask;
-    [SerializeField] float delayTask = 5;
-
-    private class TaskSoldier : MonoBehaviour
-    {
-        public Soldier soldier;
-        public float timer;
-        public Coroutine task;
-        public void EndTask()
-        {
-            //stress et co
-            //soldier -> back
-            soldier = null;
-            timer = 0;
-        }
-
-        public void BreakTask()
-        {
-            soldier = null;
-            timer = 0;
-            if (task != null)
-            {
-                StopCoroutine(task);
-            }
-        }
-    }
 
     private void Awake()
     {
-        listTask = new Coroutine[nbPlaceSoldier];
+        listTask = new SoldierTask[nbPlaceSoldier];
     }
 
     // Use this for initialization
@@ -47,9 +20,20 @@ public class Spot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		for(int i = 0; i < listTask.Length; i++)
+        {
+            if(listTask[i] != null && listTask[i].statActiveTask)
+            {
+                listTask[i].timer += TimeManager.instance.speedTime;
+                if(listTask[i].timer >= listTask[i].delay)
+                {
+                    EndTask(listTask[i]);
+                }
+            }
+        }
 	}
 
+    #region Assignation
     private void OnMouseDown()
     {
         GameManager.instance.spotSelected = this;
@@ -63,6 +47,8 @@ public class Spot : MonoBehaviour {
             if(soldier != null && actualPlace < nbPlaceSoldier)
             {
                 soldier.SetDestination(transform.position, this);
+                soldier.lastTask = name;
+                listTask[actualPlace] = new SoldierTask(soldier, delayTask * RatioPerkTimer(soldier));
                 actualPlace++;
             }
         }
@@ -76,13 +62,98 @@ public class Spot : MonoBehaviour {
     public void SetTaskSoldier(Soldier soldier)
     {
         soldier.transform.position = posForSoldiers[actualPlace - 1].position;
+        for (int i = 0; i < listTask.Length; i++)
+        {
+            if(listTask[i] != null && ReferenceEquals(listTask[i].soldier, soldier))
+            {
+                listTask[i].statActiveTask = true; //   obsolete ->    soldier.coroutin = StartCoroutine(TimerTask(listTask[i]));
+                break;
+            }
+        }
         //set animation
         //demarrer timer
     }
+    #endregion
 
-    private IEnumerator TimerTask(Soldier soldier)
+
+    #region TaskEffect
+    private class SoldierTask
     {
-        yield return new WaitForSeconds(delayTask);
-        //stress et co
+        public Soldier soldier;
+        public float delay;
+        public bool statActiveTask;
+        //public Coroutine coroutine;
+        public float timer;
+
+        public SoldierTask(Soldier p_soldier, float p_timer)
+        {
+            soldier = p_soldier;
+            delay = p_timer;
+            statActiveTask = false;
+            //coroutine = null;
+            timer = 0;
+        }
     }
+
+    [SerializeField] bool spotLooping = false;
+    private SoldierTask[] listTask;
+    [SerializeField] float delayTask = 5;
+    public EnumDefine.Perks perkForTask;
+    [SerializeField] float rationPerkTask = 0.5f;
+    [SerializeField] float stressTask = 5;
+
+    private IEnumerator TimerTask(SoldierTask task)
+    {
+        yield return new WaitForSeconds(task.delay);
+        EndTask(task);
+    }
+
+    private void EndTask(SoldierTask soldierTask)
+    {
+        soldierTask.soldier.ResultEndTaskStress(name, stressTask);
+        //gain de fin de tache
+        print("tache finit");
+        if (spotLooping)
+        {
+            soldierTask.timer = 0;     // obsolete -> soldierTask.coroutin = StartCoroutine(TimerTask(soldierTask));
+        }
+        else
+        {
+            soldierTask.soldier.BackWaitingZone();
+            soldierTask.soldier = null;
+            soldierTask.statActiveTask = false;
+        }
+        //stress et co
+        //soldier -> back
+    }
+
+    public void BreakTask(Soldier soldier)
+    {
+        SoldierTask soldierTask = null;
+        for(int i = 0; i < listTask.Length; i++)
+        {
+            if(ReferenceEquals(listTask[i].soldier, soldier))
+            {
+                soldierTask = listTask[i];
+                break;
+            }
+        }
+        if(soldierTask == null)
+        {
+            return;
+        }
+        soldierTask.soldier.EndCurrentWork();
+        soldierTask.soldier = null;
+        soldierTask.statActiveTask = false;
+        /*if (soldierTask.coroutine != null) {
+            StopCoroutine(soldierTask.coroutine);
+        }*/
+        soldierTask = null;
+    }
+
+    private float RatioPerkTimer(Soldier soldier)
+    {
+        return perkForTask != EnumDefine.Perks.nothings && soldier.HasPerk(perkForTask) ? rationPerkTask : 1;
+    }
+    #endregion
 }

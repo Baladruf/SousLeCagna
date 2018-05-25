@@ -127,4 +127,9 @@ public class TimeManager : MonoBehaviour {
             //fin de journée -> reset du temps / récapitulatif / etc
         }
     }
+
+    public float RatioTime()
+    {
+        return actualTime;
+    }
 }

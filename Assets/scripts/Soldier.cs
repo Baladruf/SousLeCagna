@@ -22,6 +22,13 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private Spot hasTask = null;
     private bool hasWork = false;
 
+    //[SerializeField] int toleranceTask = 5;
+    [SerializeField] float ratioStressTolerance = 1.2f;
+    public float tolerance { get; set; }
+    public string lastTask { get; set; }
+
+    [SerializeField] float speedMove; // a voir
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         print("drag begin");
@@ -57,7 +64,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     private void OnTriggerEnter(Collider other)
     {
-        if (hasTask)
+        if (hasTask && ReferenceEquals(other.GetComponent<Spot>(), hasTask) && !hasWork)
         {
             agent.isStopped = true;
             hasWork = true;
@@ -78,16 +85,18 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
     public void SetDestination(Vector3 pos, Spot spot)
     {
         if(hasTask != null)
         {
+            hasTask.BreakTask(this);
             hasTask.FreePlace();
         }
         hasTask = spot;
+        agent.isStopped = false;
         agent.SetDestination(pos);
     }
 
@@ -95,10 +104,43 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     {
         if(hasTask != null)
         {
+            //hasTask.BreakTask(this);
             hasTask.FreePlace();
             //go zone waiting
         }
         hasWork = false;
         hasTask = null;
+        agent.isStopped = false;
+        agent.SetDestination(GameManager.instance.spotWaiting.transform.position);
+    }
+
+    public bool HasPerk(EnumDefine.Perks perk)
+    {
+        for(int i = 0; i < listPerks.Count; i++)
+        {
+            if(perk == listPerks[i])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void ResultEndTaskStress(string taskName, float stressTask)
+    {
+        if(taskName == lastTask && stressTask >= 0)// a voir
+        {
+            tolerance *= ratioStressTolerance;
+        }
+        else
+        {
+            tolerance = 1;
+        }
+        stress = stressTask * tolerance;
+    }
+
+    public void EndCurrentWork()
+    {
+        hasWork = false;
     }
 }

@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 58812223}
   - component: {fileID: 58812227}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: Atelier2
   m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,8 +307,8 @@ Transform:
   m_LocalPosition: {x: -0.36, y: -0.36, z: -0.21}
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 948431840}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &58812227
 MonoBehaviour:
@@ -322,6 +322,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbPlaceSoldier: 1
+  posForSoldiers:
+  - {fileID: 58812226}
+  spotLooping: 1
+  delayTask: 5
+  perkForTask: 0
+  rationPerkTask: 0.5
+  stressTask: 5
 --- !u!1 &122850741
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +366,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 122850741}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -393,7 +400,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 122850741}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 292a5242bad83dc45b819a73e26a499c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -443,7 +450,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 172726233}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -477,7 +484,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 172726233}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 292a5242bad83dc45b819a73e26a499c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -820,7 +827,7 @@ GameObject:
   - component: {fileID: 330613409}
   - component: {fileID: 330613413}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Atelier3
   m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -888,9 +895,11 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.76, y: -0.36, z: -0.98}
   m_LocalScale: {x: 2, y: 1, z: 2}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Children:
+  - {fileID: 761637614}
+  - {fileID: 1350649030}
+  m_Father: {fileID: 948431840}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330613413
 MonoBehaviour:
@@ -904,6 +913,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbPlaceSoldier: 2
+  posForSoldiers:
+  - {fileID: 761637614}
+  - {fileID: 1350649030}
+  spotLooping: 0
+  delayTask: 5
+  perkForTask: 0
+  rationPerkTask: 0.5
+  stressTask: 5
 --- !u!1 &355309769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,7 +1080,7 @@ RectTransform:
   - {fileID: 1521389070}
   - {fileID: 1098427166}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1083,7 +1100,7 @@ GameObject:
   - component: {fileID: 461696896}
   - component: {fileID: 461696900}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Atelier1
   m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1152,8 +1169,8 @@ Transform:
   m_LocalPosition: {x: -6.23, y: -0.36, z: -0.35}
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 948431840}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &461696900
 MonoBehaviour:
@@ -1167,6 +1184,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbPlaceSoldier: 1
+  posForSoldiers: []
+  spotLooping: 0
+  delayTask: 5
+  perkForTask: 0
+  rationPerkTask: 0.5
+  stressTask: 5
 --- !u!1 &505417981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,6 +1229,7 @@ MonoBehaviour:
   nameSoldier: 
   rangSoldier: 0
   competence: 
+  ratioStressTolerance: 0.5
 --- !u!23 &505417983
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1321,7 +1345,7 @@ RectTransform:
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1576,6 +1600,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 634765662}
+--- !u!1 &761637613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 761637614}
+  m_Layer: 0
+  m_Name: pos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &761637614
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 761637613}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 330613412}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &807353288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,7 +1761,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 810767367}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1743,7 +1795,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 810767367}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 292a5242bad83dc45b819a73e26a499c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1789,7 +1841,7 @@ Transform:
   - {fileID: 1296394991}
   - {fileID: 1354559810}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &931476249
 GameObject:
@@ -1828,7 +1880,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 931476249}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1862,7 +1914,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 931476249}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 292a5242bad83dc45b819a73e26a499c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1914,6 +1966,7 @@ MonoBehaviour:
   nameSoldier: 
   rangSoldier: 0
   competence: 
+  ratioStressTolerance: 0.5
 --- !u!23 &944644324
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2029,13 +2082,46 @@ RectTransform:
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.18, y: 0.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &948431839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 948431840}
+  m_Layer: 0
+  m_Name: Spot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &948431840
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 948431839}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 461696899}
+  - {fileID: 58812226}
+  - {fileID: 330613412}
+  - {fileID: 1141766068}
+  - {fileID: 1513398328}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1064971556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,7 +2277,7 @@ GameObject:
   - component: {fileID: 1141766065}
   - component: {fileID: 1141766069}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Atelier4
   m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2260,8 +2346,8 @@ Transform:
   m_LocalPosition: {x: 2.62, y: -0.36, z: -9.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 948431840}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1141766069
 MonoBehaviour:
@@ -2275,6 +2361,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbPlaceSoldier: 1
+  posForSoldiers: []
+  spotLooping: 0
+  delayTask: 5
+  perkForTask: 0
+  rationPerkTask: 0.5
+  stressTask: 5
 --- !u!1 &1231937056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,7 +2423,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1250433000
 GameObject:
@@ -2393,7 +2485,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1296394990
 GameObject:
@@ -2432,7 +2524,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1296394990}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2466,7 +2558,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1296394990}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 292a5242bad83dc45b819a73e26a499c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2544,6 +2636,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1350649029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1350649030}
+  m_Layer: 0
+  m_Name: pos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1350649030
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1350649029}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.275, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 330613412}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1354559809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,7 +2701,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1354559809}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2615,7 +2735,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1354559809}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 292a5242bad83dc45b819a73e26a499c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2667,6 +2787,7 @@ MonoBehaviour:
   nameSoldier: 
   rangSoldier: 0
   competence: 
+  ratioStressTolerance: 0.5
 --- !u!23 &1414685495
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2782,7 +2903,7 @@ RectTransform:
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2802,7 +2923,7 @@ GameObject:
   - component: {fileID: 1513398325}
   - component: {fileID: 1513398329}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: spot waiting
   m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2871,8 +2992,8 @@ Transform:
   m_LocalPosition: {x: -3.78, y: -0.36, z: -10.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 948431840}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1513398329
 MonoBehaviour:
@@ -2882,10 +3003,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1513398324}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a71aefe8acf3c6542849d07d7155699f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fd177da86ebfbd4992f987010eddf2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nbPlaceSoldier: 1
+  posSoldier: []
 --- !u!1 &1521389069
 GameObject:
   m_ObjectHideFlags: 0
@@ -3095,7 +3216,7 @@ Transform:
   - {fileID: 239249764}
   - {fileID: 269056774}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1633563937
 MonoBehaviour:
@@ -3109,6 +3230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorSoldierSelected: {fileID: 269056770}
+  spotWaiting: {fileID: 1513398324}
 --- !u!1 &1638307243
 GameObject:
   m_ObjectHideFlags: 0
@@ -3146,7 +3268,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1638307243}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3180,7 +3302,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1638307243}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 292a5242bad83dc45b819a73e26a499c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
