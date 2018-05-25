@@ -59,6 +59,8 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private void OnMouseDown()
     {
         GameManager.instance.soldierSelected = this;
+        GameManager.instance.uiManager.uISoldier.SetIdentitySoldier(photo, rank, this);
+        GameManager.instance.uiManager.uIAtelier.DesactiveUI();
         //affiche ui
     }
 
@@ -73,24 +75,24 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     }
 
     // Use this for initialization
-    void Awake () {
+    void Awake() {
         mainCamera = Camera.main;
         listPerks = new List<EnumDefine.Perks>();
-        if(competence.Length > 0)
+        if (competence.Length > 0)
         {
             listPerks.AddRange(competence);
         }
         agent = GetComponent<NavMeshAgent>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
 
-	}
+    // Update is called once per frame
+    void Update() {
+
+    }
 
     public void SetDestination(Vector3 pos, Spot spot)
     {
-        if(hasTask != null)
+        if (hasTask != null)
         {
             hasTask.BreakTask(this);
             hasTask.FreePlace();
@@ -102,7 +104,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     public void BackWaitingZone()
     {
-        if(hasTask != null)
+        if (hasTask != null)
         {
             //hasTask.BreakTask(this);
             hasTask.FreePlace();
@@ -116,9 +118,9 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     public bool HasPerk(EnumDefine.Perks perk)
     {
-        for(int i = 0; i < listPerks.Count; i++)
+        for (int i = 0; i < listPerks.Count; i++)
         {
-            if(perk == listPerks[i])
+            if (perk == listPerks[i])
             {
                 return true;
             }
@@ -128,7 +130,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     public void ResultEndTaskStress(string taskName, float stressTask)
     {
-        if(taskName == lastTask && stressTask >= 0)// a voir
+        if (taskName == lastTask && stressTask >= 0)// a voir
         {
             tolerance *= ratioStressTolerance;
         }
@@ -143,4 +145,9 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     {
         hasWork = false;
     }
+
+    #region UIPrint
+    [SerializeField] Sprite photo;
+    [SerializeField] Sprite rank;
+    #endregion
 }

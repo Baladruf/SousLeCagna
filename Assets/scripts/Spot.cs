@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spot : MonoBehaviour {
 
@@ -32,6 +33,13 @@ public class Spot : MonoBehaviour {
             }
         }
 	}
+
+    private void OnMouseEnter()
+    {
+        GameManager.instance.uiManager.uIAtelier.ActiveUI(iconAtelier, descriptionAtelier);
+        GameManager.instance.uiManager.uISoldier.ResetUI();
+        GameManager.instance.ResetCursor();
+    }
 
     #region Assignation
     private void OnMouseDown()
@@ -155,5 +163,10 @@ public class Spot : MonoBehaviour {
     {
         return perkForTask != EnumDefine.Perks.nothings && soldier.HasPerk(perkForTask) ? rationPerkTask : 1;
     }
+    #endregion
+
+    #region UIPrint
+    Sprite iconAtelier;
+    Text descriptionAtelier;
     #endregion
 }

@@ -1229,7 +1229,10 @@ MonoBehaviour:
   nameSoldier: 
   rangSoldier: 0
   competence: 
-  ratioStressTolerance: 0.5
+  ratioStressTolerance: 1.2
+  speedMove: 0
+  photo: {fileID: 0}
+  rank: {fileID: 0}
 --- !u!23 &505417983
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1966,7 +1969,10 @@ MonoBehaviour:
   nameSoldier: 
   rangSoldier: 0
   competence: 
-  ratioStressTolerance: 0.5
+  ratioStressTolerance: 1.2
+  speedMove: 0
+  photo: {fileID: 0}
+  rank: {fileID: 0}
 --- !u!23 &944644324
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2787,7 +2793,10 @@ MonoBehaviour:
   nameSoldier: 
   rangSoldier: 0
   competence: 
-  ratioStressTolerance: 0.5
+  ratioStressTolerance: 1.2
+  speedMove: 0
+  photo: {fileID: 0}
+  rank: {fileID: 0}
 --- !u!23 &1414685495
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3229,6 +3238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a756e61cdf4b0d94e9482e0bb687088c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMana: {fileID: 0}
   cursorSoldierSelected: {fileID: 269056770}
   spotWaiting: {fileID: 1513398324}
 --- !u!1 &1638307243
