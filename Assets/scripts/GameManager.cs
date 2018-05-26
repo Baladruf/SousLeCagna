@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
     [SerializeField] GameObject cursorSoldierSelected;
+    public GameObject spotWaiting;
     private Soldier actualSoldier;
     public Soldier soldierSelected
     {
