@@ -28,7 +28,7 @@ public class UISoldier : MonoBehaviour {
         photoSoldier.sprite = photo;
         rankIcon.sprite = rank;
         actualSoldier = soldier;
-        photoSoldier.transform.position = soldier.transform.position.WithRelativeY(3);
+        photoSoldier.transform.position = soldier.transform.position.WithRelativeY(1);
         photoSoldier.gameObject.SetActive(true);
 
         description[0].text = soldier.name;

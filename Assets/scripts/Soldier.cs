@@ -16,7 +16,9 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     [SerializeField] EnumDefine.RankMilitary rangSoldier;
     [SerializeField] EnumDefine.Perks[] competence;
     private List<EnumDefine.Perks> listPerks;
-    private float stress;
+
+    [SerializeField] float maxMoral;
+    private float moral;
     private float hp;
 
     private Spot hasTask = null;
@@ -85,6 +87,11 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         agent = GetComponent<NavMeshAgent>();
     }
 
+    private void Start()
+    {
+        GameManager.instance.eventManager.eventSoldier += EventEffect;
+    }
+
     // Update is called once per frame
     void Update() {
 
@@ -138,12 +145,24 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         {
             tolerance = 1;
         }
-        stress = stressTask * tolerance;
+        moral = stressTask * tolerance;
     }
 
     public void EndCurrentWork()
     {
         hasWork = false;
+    }
+
+    private void EventEffect(float perteHp, float perteMoral)
+    {
+        hp -= perteHp;
+        if(hp <= 0)
+        {
+            //dead etc
+            return;
+        }
+
+        moral = Mathf.Max(0, Mathf.Min(maxMoral, moral - perteMoral));
     }
 
     #region UIPrint

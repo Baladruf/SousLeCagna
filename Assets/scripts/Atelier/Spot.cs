@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Spot : MonoBehaviour {
+public abstract class Spot : MonoBehaviour {
 
-    [SerializeField] int nbPlaceSoldier = 1;
+    [SerializeField]
+    protected int nbPlaceSoldier = 1;
     [SerializeField] Transform[] posForSoldiers;
-    private int actualPlace = 0;
+    protected int actualPlace = 0;
+    [SerializeField]
+    protected bool atelierDestress;
+    public bool isDestress { get; private set; }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         listTask = new SoldierTask[nbPlaceSoldier];
+        isDestress = atelierDestress;
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    protected virtual void Update () {
 		for(int i = 0; i < listTask.Length; i++)
         {
             if(listTask[i] != null && listTask[i].statActiveTask)
@@ -34,20 +34,18 @@ public class Spot : MonoBehaviour {
         }
 	}
 
-    private void OnMouseEnter()
+    protected virtual void OnMouseDown()
     {
-        GameManager.instance.uiManager.uIAtelier.ActiveUI(iconAtelier, descriptionAtelier);
+        GameManager.instance.uiManager.uIAtelier.ActiveUI(iconAtelier, descriptionAtelier, transform);
         GameManager.instance.uiManager.uISoldier.ResetUI();
         GameManager.instance.ResetCursor();
-    }
-
-    #region Assignation
-    private void OnMouseDown()
-    {
         GameManager.instance.spotSelected = this;
     }
 
-    private void OnMouseOver()
+    protected abstract void specificiteAtelier();
+    #region Assignation
+
+    protected virtual void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(1))
         {
@@ -85,7 +83,7 @@ public class Spot : MonoBehaviour {
 
 
     #region TaskEffect
-    private class SoldierTask
+    protected class SoldierTask
     {
         public Soldier soldier;
         public float delay;
@@ -103,20 +101,24 @@ public class Spot : MonoBehaviour {
         }
     }
 
-    [SerializeField] bool spotLooping = false;
-    private SoldierTask[] listTask;
-    [SerializeField] float delayTask = 5;
+    [SerializeField]
+    protected bool spotLooping = false;
+    protected SoldierTask[] listTask;
+    [SerializeField]
+    protected float delayTask = 5;
     public EnumDefine.Perks perkForTask;
-    [SerializeField] float rationPerkTask = 0.5f;
-    [SerializeField] float stressTask = 5;
+    [SerializeField]
+    protected float rationPerkTask = 0.5f;
+    [SerializeField]
+    protected float stressTask = 5;
 
-    private IEnumerator TimerTask(SoldierTask task)
+    protected IEnumerator TimerTask(SoldierTask task)
     {
         yield return new WaitForSeconds(task.delay);
         EndTask(task);
     }
 
-    private void EndTask(SoldierTask soldierTask)
+    protected void EndTask(SoldierTask soldierTask)
     {
         soldierTask.soldier.ResultEndTaskStress(name, stressTask);
         //gain de fin de tache
@@ -159,14 +161,16 @@ public class Spot : MonoBehaviour {
         soldierTask = null;
     }
 
-    private float RatioPerkTimer(Soldier soldier)
+    protected float RatioPerkTimer(Soldier soldier)
     {
         return perkForTask != EnumDefine.Perks.nothings && soldier.HasPerk(perkForTask) ? rationPerkTask : 1;
     }
     #endregion
 
     #region UIPrint
-    Sprite iconAtelier;
-    Text descriptionAtelier;
+    [SerializeField]
+    protected Sprite iconAtelier;
+    [SerializeField]
+    protected Text descriptionAtelier;
     #endregion
 }
