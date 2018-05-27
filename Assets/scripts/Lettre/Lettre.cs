@@ -8,7 +8,8 @@ public class Lettre : MonoBehaviour {
 
     [SerializeField] int moral_drop;
     [SerializeField] int commandement_drop;
-    [SerializeField] int moral_grp;
+    [SerializeField] int moral_grp_drop;
+    [SerializeField] string nameOfSoldier;
 
     private void Awake()
     {
@@ -21,11 +22,19 @@ public class Lettre : MonoBehaviour {
 
     public void Drop()
     {
-
+        GameManager.instance.letterManager.courrierEffect.Add(new LetterManager.LetterEffect(nameOfSoldier, new ConsequenceLetter(moral_drop, commandement_drop, moral_grp_drop)));
     }
 
     public void Accept()
     {
-
+        var letterResult = new ConsequenceLetter();
+        for(int i = 0; i < paragraphes.Length; i++)
+        {
+            var typePara = paragraphes[i].SendInfo();
+            letterResult.finalMoral += typePara.finalMoral;
+            letterResult.finalCommandement += typePara.finalCommandement;
+            letterResult.finalMoralGrp += typePara.finalMoralGrp;
+        }
+        GameManager.instance.letterManager.courrierEffect.Add(new LetterManager.LetterEffect(nameOfSoldier, letterResult));
     }
 }

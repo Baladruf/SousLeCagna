@@ -52,4 +52,16 @@ public class CourrierSpot : Spot {
         }
         //ajout 3 lettres
     }
+
+    protected override void FeedbackStatSpot()
+    {
+        if (nbPlaceSoldier > 0)
+        {
+            base.FeedbackStatSpot();
+        }
+        else
+        {
+            meshRenderer.material.color = Color.black;
+        }
+    }
 }

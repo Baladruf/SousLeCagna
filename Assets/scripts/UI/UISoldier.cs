@@ -20,20 +20,24 @@ public class UISoldier : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
+        if (actualSoldier != null)
+        {
+            photoSoldier.transform.position = actualSoldier.transform.position.WithRelativeY(1);
+        }
 	}
 
-    public void SetIdentitySoldier(Sprite photo, Sprite rank, Soldier soldier)
+    public void SetIdentitySoldier(Sprite photo, Sprite rank, string[] soldierDes)
     {
         photoSoldier.sprite = photo;
         rankIcon.sprite = rank;
-        actualSoldier = soldier;
-        photoSoldier.transform.position = soldier.transform.position.WithRelativeY(1);
+        //actualSoldier = soldier;
         photoSoldier.gameObject.SetActive(true);
 
-        description[0].text = soldier.name;
-
-        photoSoldier.transform.parent.parent = soldier.transform;
+        for(int i = 0; i < soldierDes.Length; i++)
+        {
+            description[i].text = soldierDes[i];
+        }
+        //description[0].text = soldier.name;
         //description[1].text = soldier.perk;
         //description[0].text = soldier.moral;
         //stat

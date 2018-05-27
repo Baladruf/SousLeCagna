@@ -32,8 +32,9 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     public string lastTask { get; set; }
 
     [SerializeField] float speedMove; // a voir
+    private string animEnCour;
 
-    #region var animation
+    #region animation
     //private float speedAnim = 0;
     private float deratisse = 0;
     public bool isDeratisation
@@ -52,6 +53,33 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
             {
                 deratisse = 0;
             }
+        }
+    }
+
+    public void SetAnimSpot(EnumDefine.AnimSpot anim)
+    {
+        switch (anim)
+        {
+            case EnumDefine.AnimSpot.fusil:
+                break;
+            case EnumDefine.AnimSpot.read:
+                break;
+            case EnumDefine.AnimSpot.read_letter:
+                break;
+            case EnumDefine.AnimSpot.eat:
+                break;
+            case EnumDefine.AnimSpot.drink:
+                break;
+            case EnumDefine.AnimSpot.hitReaction:
+                break;
+            case EnumDefine.AnimSpot.walkBox:
+                break;
+            case EnumDefine.AnimSpot.mitrailleuse:
+                break;
+            case EnumDefine.AnimSpot.research:
+                break;
+            case EnumDefine.AnimSpot.death:
+                break;
         }
     }
     #endregion
@@ -86,7 +114,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private void OnMouseDown()
     {
         GameManager.instance.soldierSelected = this;
-        GameManager.instance.uiManager.uISoldier.SetIdentitySoldier(photo, rank, this);
+        GameManager.instance.uiManager.uISoldier.SetIdentitySoldier(photo, rank, DescriptionSoldier());
         GameManager.instance.uiManager.uIAtelier.DesactiveUI();
         //affiche ui
     }
@@ -198,5 +226,10 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     #region UIPrint
     [SerializeField] Sprite photo;
     [SerializeField] Sprite rank;
+
+    public string[] DescriptionSoldier()
+    {
+        return new string[] { nameSoldier, rank.name, listPerks[0].ToString(), hp.ToString(), moral.ToString()};
+    }
     #endregion
 }

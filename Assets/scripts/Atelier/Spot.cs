@@ -8,15 +8,32 @@ public abstract class Spot : MonoBehaviour {
     [SerializeField]
     protected int nbPlaceSoldier = 1;
     [SerializeField] Transform[] posForSoldiers;
-    protected int actualPlace = 0;
+    private int placeForSoldier;
+    protected int actualPlace
+    {
+        get
+        {
+            return placeForSoldier;
+        }
+        set
+        {
+            placeForSoldier = value;
+            FeedbackStatSpot();
+        }
+    }
     [SerializeField]
     protected bool atelierDestress;
     public bool isDestress { get; private set; }
+    protected MeshRenderer meshRenderer;
+    [SerializeField]
+    protected EnumDefine.AnimSpot animSpot;
 
     protected virtual void Awake()
     {
         listTask = new SoldierTask[nbPlaceSoldier];
         isDestress = atelierDestress;
+        meshRenderer = GetComponent<MeshRenderer>();
+        actualPlace = 0;
     }
 
     // Update is called once per frame
@@ -44,6 +61,17 @@ public abstract class Spot : MonoBehaviour {
 
     protected abstract void specificiteAtelier();
     #region Assignation
+    protected virtual void FeedbackStatSpot()
+    {
+        if(actualPlace == 0)
+        {
+            meshRenderer.material.color = Color.yellow;
+        }
+        else
+        {
+            meshRenderer.material.color = Color.cyan;
+        }
+    }
 
     protected virtual void OnMouseOver()
     {
@@ -76,6 +104,7 @@ public abstract class Spot : MonoBehaviour {
                 break;
             }
         }
+        soldier.SetAnimSpot(animSpot);
         //set animation
         //demarrer timer
     }

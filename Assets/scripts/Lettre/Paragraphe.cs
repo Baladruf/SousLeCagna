@@ -6,20 +6,6 @@ using UnityEngine;
 [System.Serializable]
 public class Paragraphe : ScriptableObject {
 
-    public struct ConsequenceLetter
-    {
-        public int finalMoral;
-        public int finalCommandement;
-        public int finalMoralGrp;
-
-        public ConsequenceLetter(int m, int c, int mg)
-        {
-            finalMoral = m;
-            finalCommandement = c;
-            finalMoralGrp = mg;
-        }
-    }
-
     public int moral;
     public int commandement;
     public int moralGrp;

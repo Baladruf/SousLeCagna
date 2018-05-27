@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
     public PlayerManager playerManager { get; private set; }
     [SerializeField] EventManager eventMana;
     public EventManager eventManager { get; private set; }
+    [SerializeField] LetterManager letterMana;
+    public LetterManager letterManager { get; private set; }
     #endregion
 
 
@@ -70,6 +72,7 @@ public class GameManager : MonoBehaviour {
         uiManager = uiMana;
         playerManager = playerMana;
         eventManager = eventMana;
+        (letterManager = letterMana).gameManager = this;
     }
 
     // Update is called once per frame

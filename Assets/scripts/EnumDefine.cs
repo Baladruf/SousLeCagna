@@ -14,5 +14,17 @@ public class EnumDefine {
         nothings
     }
 
-
+    public enum AnimSpot
+    {
+        fusil,
+        read,
+        read_letter,
+        eat,
+        drink,
+        hitReaction,
+        mitrailleuse,
+        walkBox,
+        research,
+        death
+    }
 }
