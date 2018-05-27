@@ -32,6 +32,8 @@ public class UISoldier : MonoBehaviour {
         photoSoldier.gameObject.SetActive(true);
 
         description[0].text = soldier.name;
+
+        photoSoldier.transform.parent.parent = soldier.transform;
         //description[1].text = soldier.perk;
         //description[0].text = soldier.moral;
         //stat
