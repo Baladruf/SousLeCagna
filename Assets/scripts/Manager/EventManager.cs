@@ -33,4 +33,9 @@ public class EventManager : MonoBehaviour {
             timerText.text = heureS + ":" + minuteS;
         }
     }
+
+    #region Event
+    public delegate void EventSoldier(float degatHp, float degatMoral);
+    public event EventSoldier eventSoldier;
+    #endregion
 }

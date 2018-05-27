@@ -26,5 +26,8 @@ public class GroundOption : MonoBehaviour {
     private void OnMouseDown()
     {
         mainCamera.targetFollow = null;
+        GameManager.instance.ResetCursor();
+        GameManager.instance.uiManager.uIAtelier.DesactiveUI();
+        GameManager.instance.uiManager.uISoldier.ResetUI();
     }
 }

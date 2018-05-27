@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    #region manager
     public static GameManager instance;
+
+    [SerializeField] UIManager uiMana;
+    public UIManager uiManager { get; private set; }
+    [SerializeField] PlayerManager playerMana;
+    public PlayerManager playerManager { get; private set; }
+    [SerializeField] EventManager eventMana;
+    public EventManager eventManager { get; private set; }
+    #endregion
+
+
+    //other
     [SerializeField] GameObject cursorSoldierSelected;
     public GameObject spotWaiting;
     private Soldier actualSoldier;
@@ -51,10 +63,18 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         instance = this;
+        uiManager = uiMana;
+        playerManager = playerMana;
+        eventManager = eventMana;
     }
 
     // Update is called once per frame
     void Update () {
 		
 	}
+
+    public void ResetCursor()
+    {
+        cursorSoldierSelected.SetActive(false);
+    }
 }
