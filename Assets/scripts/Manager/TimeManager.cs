@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimeManager : MonoBehaviour {
 
     public static TimeManager instance;
-    private EventManager eventManager;
+    public EventManager eventManager;
 
     public float nbSecondForOneMinuteInGame = 1.5f;
     private int minuteInGame = 0;
@@ -27,7 +27,7 @@ public class TimeManager : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         instance = this;
-        eventManager = GetComponent<EventManager>();
+        (eventManager = GetComponent<EventManager>()).timeManager = this;
         InitButtonTime();
         minuteInGame = (hourBeginDay * 60) + minuteBeginDay;
         eventManager.TimeEvent(minuteInGame);
@@ -131,5 +131,10 @@ public class TimeManager : MonoBehaviour {
     public float RatioTime()
     {
         return actualTime;
+    }
+
+    public int FormatHourIRLToHourInGame(int hour, int minute)
+    {
+        return (hour * 60) + minute;
     }
 }

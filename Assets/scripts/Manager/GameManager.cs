@@ -31,11 +31,11 @@ public class GameManager : MonoBehaviour {
             if(actualSoldier != null)
             {
                 //action / UI desactiver
+                cursorSoldierSelected.transform.position = new Vector3(actualSoldier.transform.position.x, 0, actualSoldier.transform.position.z);
+                cursorSoldierSelected.transform.SetParent(actualSoldier.transform);
+                cursorSoldierSelected.SetActive(true);
             }
             actualSoldier = value;
-            cursorSoldierSelected.transform.position= new Vector3(actualSoldier.transform.position.x, 0, actualSoldier.transform.position.z);
-            cursorSoldierSelected.transform.SetParent(actualSoldier.transform);
-            cursorSoldierSelected.SetActive(true);
 
             // voir cursor spot
         }
@@ -60,6 +60,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    [SerializeField] GameObject mainCamera, cameraDesk;
+    [SerializeField] GameObject UITranche, UIDesk;
+    private bool goDesk = false;
+
     private void Awake()
     {
         instance = this;
@@ -76,5 +80,34 @@ public class GameManager : MonoBehaviour {
     public void ResetCursor()
     {
         cursorSoldierSelected.SetActive(false);
+    }
+
+    public void Deselection()
+    {
+        ResetCursor();
+        soldierSelected = null;
+        spotSelected = null;
+        uiMana.uISoldier.ResetUI();
+        uiMana.uIAtelier.DesactiveUI();
+    }
+
+    public void SwitchDesk()
+    {
+        goDesk = !goDesk;
+        if (goDesk)
+        {
+            Deselection();
+            UITranche.SetActive(false);
+            UIDesk.SetActive(true);
+            mainCamera.SetActive(false);
+            cameraDesk.SetActive(true);
+        }
+        else
+        {
+            UITranche.SetActive(true);
+            UIDesk.SetActive(false);
+            mainCamera.SetActive(true);
+            cameraDesk.SetActive(false);
+        }
     }
 }

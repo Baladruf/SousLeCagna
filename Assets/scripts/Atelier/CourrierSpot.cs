@@ -4,10 +4,48 @@ using UnityEngine;
 
 public class CourrierSpot : Spot {
 
-    protected override void specificiteAtelier()
+    [SerializeField] GameObject[] prefabLettres;
+    [SerializeField] Transform positionLettre;
+    private bool isDispo;
+    private bool courrierDispo
     {
-        
+        get
+        {
+            return isDispo;
+        }
+        set
+        {
+            isDispo = value;
+            if (isDispo)
+            {
+                nbPlaceSoldier = 1;
+            }
+            else
+            {
+                nbPlaceSoldier = 0;
+            }
+        }
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        TimeManager.instance.eventManager.eventLetter += CourrierDispo;
+    }
 
+    private void CourrierDispo()
+    {
+        courrierDispo = true;
+        //Affiche UI lettre peut etre recup
+    }
+
+    protected override void specificiteAtelier()
+    {
+        courrierDispo = false;
+        for(int i = 0; i < prefabLettres.Length; i++)
+        {
+            Instantiate(prefabLettres[i], positionLettre.position, Quaternion.identity);
+        }
+        //ajout 3 lettres
+    }
 }
