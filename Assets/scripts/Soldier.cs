@@ -122,7 +122,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     // Update is called once per frame
     void Update() {
         float speedA = agent.velocity.magnitude / agent.speed;
-        print("vitesse = " + speedA);
+        //print("vitesse = " + speedA);
         animator.SetFloat("deratisation", deratisse);
         animator.SetFloat("speed", speedA);
     }

@@ -3654,8 +3654,8 @@ MonoBehaviour:
   perkForTask: 0
   rationPerkTask: 0.5
   stressTask: 0
-  iconAtelier: {fileID: 0}
-  descriptionAtelier: {fileID: 0}
+  iconAtelier: {fileID: 21300000, guid: 071103601bd24a04180bda8e950b24b9, type: 3}
+  descriptionAtelier: {fileID: 385011577}
   prefabLettres: []
   positionLettre: {fileID: 1949045720}
 --- !u!1 &1146933549
