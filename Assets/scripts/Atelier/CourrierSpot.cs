@@ -30,6 +30,10 @@ public class CourrierSpot : Spot {
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    private void Start()
+    {
         TimeManager.instance.eventManager.eventLetter += CourrierDispo;
     }
 

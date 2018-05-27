@@ -10,6 +10,8 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private Camera mainCamera;
     public LayerMask layerDrag;
     private NavMeshAgent agent;
+    private Animator animator;
+    private Rigidbody rigi;
 
     //property soldier
     [SerializeField] string nameSoldier;
@@ -30,6 +32,29 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     public string lastTask { get; set; }
 
     [SerializeField] float speedMove; // a voir
+
+    #region var animation
+    //private float speedAnim = 0;
+    private float deratisse = 0;
+    public bool isDeratisation
+    {
+        get
+        {
+            return deratisse == 1;
+        }
+        set
+        {
+            if (value)
+            {
+                deratisse = 1;
+            }
+            else
+            {
+                deratisse = 0;
+            }
+        }
+    }
+    #endregion
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -85,6 +110,8 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
             listPerks.AddRange(competence);
         }
         agent = GetComponent<NavMeshAgent>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
+        rigi = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -94,7 +121,10 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     // Update is called once per frame
     void Update() {
-
+        float speedA = agent.velocity.magnitude / agent.speed;
+        print("vitesse = " + speedA);
+        animator.SetFloat("deratisation", deratisse);
+        animator.SetFloat("speed", speedA);
     }
 
     public void SetDestination(Vector3 pos, Spot spot)
