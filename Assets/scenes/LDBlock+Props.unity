@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.44
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: d4454f71d85928744be7771e2143dab7, type: 2}
@@ -1548,7 +1548,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -8619,7 +8619,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -20966,7 +20966,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -29102,7 +29102,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -30176,7 +30176,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: affa02224f4427e4dbcf278736656acd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.315
+      value: -23.213
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: affa02224f4427e4dbcf278736656acd, type: 3}
       propertyPath: m_LocalRotation.x
@@ -33762,7 +33762,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -52647,7 +52647,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400088, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.24
+      value: 2.57
       objectReference: {fileID: 0}
     - target: {fileID: 400088, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
       propertyPath: m_LocalPosition.y
@@ -52655,23 +52655,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400088, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.05437791
+      value: -1.18
       objectReference: {fileID: 0}
     - target: {fileID: 400088, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400088, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.76475626
       objectReference: {fileID: 0}
     - target: {fileID: 400088, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400088, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.64431965
       objectReference: {fileID: 0}
     - target: {fileID: 400088, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
       propertyPath: m_RootOrder
@@ -52688,6 +52688,10 @@ Prefab:
     - target: {fileID: 400088, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.5344387
+      objectReference: {fileID: 0}
+    - target: {fileID: 400088, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -99.771
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a9094b35500c8d46ae41be58b112816, type: 3}
@@ -54956,7 +54960,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -57117,7 +57121,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -62033,7 +62037,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -62168,7 +62172,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -63555,7 +63559,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -67809,7 +67813,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -74266,13 +74270,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1847352626}
-  m_LocalRotation: {x: -0.45470977, y: 0.73583406, z: -0.1356307, w: -0.48310626}
+  m_LocalRotation: {x: 0.44927606, y: -0.78472126, z: -0.0066429074, w: 0.42698893}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 39.714, y: -130.19101, z: -404.391}
+  m_LocalEulerAnglesHint: {x: 21.916, y: 226.78299, z: -410.01}
 --- !u!1001 &1847758010
 Prefab:
   m_ObjectHideFlags: 0
@@ -74661,7 +74665,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
@@ -78702,7 +78706,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.90294117, b: 0.75735295, a: 1}
+  m_Color: {r: 1, g: 0.8088235, b: 0.52205884, a: 1}
   m_Intensity: 1.52
   m_Range: 26.63
   m_SpotAngle: 30
