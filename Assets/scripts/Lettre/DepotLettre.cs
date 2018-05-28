@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class DepotLettre : MonoBehaviour {
 
-    [SerializeField] Transform lettreTest;
+    [SerializeField] Transform[] lettreTest;
 
     private List<Lettre> lettreScipts;
     private List<Transform> lettres;
@@ -33,8 +33,11 @@ public class DepotLettre : MonoBehaviour {
         lettreScipts = new List<Lettre>();
         if(lettreTest != null)
         {
-            boiteLettre = lettreTest;
-            lettreScipts.Add(lettreTest.GetComponent<Lettre>());
+            for(int i = 0; i < lettreTest.Length; i++)
+            {
+                boiteLettre = lettreTest[i];
+                lettreScipts.Add(lettreTest[i].GetComponent<Lettre>());
+            }
         }
     }
 
@@ -50,8 +53,9 @@ public class DepotLettre : MonoBehaviour {
             isRead = true;
             lettres[0].DOLocalMoveY(0.35f, 0.5f).OnComplete(()=>
             {
-                lettres[0].DOLocalRotate(Vector3.right * 60, 0.5f);
-                lettres[0].DOLocalMove(new Vector3(-0.001f, 0.465f, 0.007f), 0.5f);
+                lettres[0].DORotate(new Vector3(160, 0, -180), 0.5f);
+                lettres[0].DOLocalMove(new Vector3(-0.001f, 0.485f, 0.106f), 0.5f);
+                lettres.RemoveAt(0);
             });
         }
     }

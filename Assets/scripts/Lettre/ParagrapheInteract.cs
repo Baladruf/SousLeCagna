@@ -6,7 +6,12 @@ public class ParagrapheInteract : MonoBehaviour {
 
     public Paragraphe paragraphe;
 
-    private void OnMouseDown()
+    private void Awake()
+    {
+        paragraphe.rature = transform.GetChild(1).gameObject;
+    }
+
+    public void OnClick()
     {
         paragraphe.OnClick();
     }

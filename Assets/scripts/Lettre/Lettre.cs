@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class Lettre : MonoBehaviour {
 
+    [SerializeField] ParagrapheInteract[] paraS;
     private Paragraphe[] paragraphes;
 
     [SerializeField] int moral_drop;
@@ -14,16 +15,16 @@ public class Lettre : MonoBehaviour {
 
     private void Awake()
     {
-        paragraphes = new Paragraphe[transform.childCount];
-        for(int i = 0; i < transform.childCount; i++)
+        paragraphes = new Paragraphe[paraS.Length];
+        for(int i = 0; i < paraS.Length; i++)
         {
-            paragraphes[i] = transform.GetChild(i).GetComponent<ParagrapheInteract>().paragraphe;
+            paragraphes[i] = paraS[i].paragraphe;
         }
     }
 
     public void Drop()
     {
-        GameManager.instance.letterManager.courrierEffect.Add(new LetterManager.LetterEffect(nameOfSoldier, new ConsequenceLetter(moral_drop, commandement_drop, moral_grp_drop)));
+        GameManager.instance.letterManager.courrierEffect.Add(new LetterManager.LetterEffect(nameOfSoldier, new ConsequenceLetter(moral_drop, commandement_drop, moral_grp_drop, true), LetterManager.TypeRecu.drop));
         Finish();
     }
 
@@ -36,14 +37,18 @@ public class Lettre : MonoBehaviour {
             letterResult.finalMoral += typePara.finalMoral;
             letterResult.finalCommandement += typePara.finalCommandement;
             letterResult.finalMoralGrp += typePara.finalMoralGrp;
+            if (typePara.isCensor)
+            {
+                letterResult.isCensor = true;
+            }
         }
-        GameManager.instance.letterManager.courrierEffect.Add(new LetterManager.LetterEffect(nameOfSoldier, letterResult));
+        GameManager.instance.letterManager.courrierEffect.Add(new LetterManager.LetterEffect(nameOfSoldier, letterResult, letterResult.isCensor ? LetterManager.TypeRecu.censure : LetterManager.TypeRecu.propre));
         Finish();
     }
 
     private void Finish()
     {
-        transform.DOMoveY(-2, 0.5f);
+        transform.DOMoveY(-2, 1f);
         Destroy(gameObject, 1);
         GameManager.instance.letterManager.depot.isRead = false;
     }
