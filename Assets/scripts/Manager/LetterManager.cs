@@ -11,6 +11,7 @@ public class LetterManager : MonoBehaviour {
         drop
     }
 
+    [System.NonSerialized]
     public GameManager gameManager;
     public DepotLettre depot;
 

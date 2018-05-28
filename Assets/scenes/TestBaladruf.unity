@@ -845,8 +845,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1098427164}
   nbMinuteByPrint: 1
-  timeManager: {fileID: 0}
-  gameManager: {fileID: 0}
 --- !u!114 &239249766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,7 +856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3a99d0d11441347aa22fc3d072d216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventManager: {fileID: 0}
   nbSecondForOneMinuteInGame: 1.5
   hourBeginDay: 5
   hourEndDay: 23
@@ -2883,7 +2880,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba19f5c1e3be4446b3bce0b140def40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   maxMoralGrp: 0
   maxCommandement: 0
   listSoldier: {fileID: 529822504}
@@ -5266,7 +5262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soldierPrint: {fileID: 538769436}
   atelierPrint: {fileID: 1849440635}
-  infoTextTranche: {fileID: 0}
+  infoTextTranche: {fileID: 1722363330}
   delayPrint: 2
   delayFade: 0
 --- !u!4 &1753202467
@@ -5614,7 +5610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2ea0306f559274588254cb372b58c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   depot: {fileID: 1949045724}
 --- !u!1 &1849440634
 GameObject:

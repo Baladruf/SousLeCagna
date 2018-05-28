@@ -27,4 +27,11 @@ public class EnumDefine {
         research,
         death
     }
+
+    public enum NameEvent
+    {
+        endDay,
+        bombardement,
+        letter
+    }
 }

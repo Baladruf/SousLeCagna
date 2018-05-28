@@ -8,13 +8,30 @@ public class EventManager : MonoBehaviour {
 
     [SerializeField] Text timerText;
     [SerializeField] int nbMinuteByPrint = 5;
+    [System.NonSerialized]
     public TimeManager timeManager;
+    [System.NonSerialized]
     public GameManager gameManager;
+
 
     private void Awake()
     {
-        /*var eventTest = new Event("Test", "juste un test", 50, eventLetter);
-        eventTest.eventTime.DynamicInvoke();*/
+        calendarEvent = new List<Event>();
+        //print(eventEndDay);
+        //eventEndDay += Start();
+        calendarEvent.Add(new Event("TestEndDay", "juste un test fin de journee", (5 * 60) + 10, EnumDefine.NameEvent.endDay));
+        //print(calendarEvent[0].eventTime);
+        //eventTest.eventTime.DynamicInvoke();
+    }
+
+    /*public void AddEvent(Delegate del)
+    {
+        calendarEvent.Add(new Event("TestEndDay", "juste un test fin de journee", (5 * 60) + 10, del));
+    }*/
+
+    private void Start()
+    {
+        //eventEndDay();
     }
 
     // Update is called once per frame
@@ -26,6 +43,13 @@ public class EventManager : MonoBehaviour {
     public void TimeEvent(int minute)
     {
         ConvertTimeInText(minute);
+        for(int i = 0; i < calendarEvent.Count; i++)
+        {
+            if(calendarEvent[i].heureDeDeclenchement == minute)
+            {
+                CallEvent(calendarEvent[i].eventName);
+            }
+        }
     }
 
     private void ConvertTimeInText(int time)
@@ -45,22 +69,40 @@ public class EventManager : MonoBehaviour {
 
     public delegate void EventLetter();
     public event EventLetter eventLetter;
+
+    public delegate void EventEndDay();
+    public event EventEndDay eventEndDay;
     #endregion
 
     #region Event
-    private class Event
+    private struct Event
     {
         public string name;
         public string description;
         public int heureDeDeclenchement;
-        public Delegate eventTime;
+        public EnumDefine.NameEvent eventName;
 
-        public Event(string n, string d, int t, Delegate dele)
+        public Event(string n, string d, int t, EnumDefine.NameEvent nameEvent)
         {
             name = n;
             description = d;
             heureDeDeclenchement = t;
-            eventTime = dele;
+            eventName = nameEvent;
+        }
+    }
+    private List<Event> calendarEvent;
+    public void CallEvent(EnumDefine.NameEvent eventN)
+    {
+        switch (eventN)
+        {
+            case EnumDefine.NameEvent.endDay:
+                eventEndDay();
+                break;
+            case EnumDefine.NameEvent.bombardement:
+                break;
+            case EnumDefine.NameEvent.letter:
+                eventLetter();
+                break;
         }
     }
     #endregion

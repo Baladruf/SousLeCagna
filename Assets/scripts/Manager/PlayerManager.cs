@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
+    [System.NonSerialized]
     public GameManager gameManager;
 
     private int actualScrap;

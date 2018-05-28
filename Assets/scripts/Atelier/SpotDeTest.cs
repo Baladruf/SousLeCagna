@@ -9,8 +9,18 @@ public class SpotDeTest : Spot {
         print("OSEF");
     }
 
+    private delegate void Test();
+    private Test t;
+
     // Use this for initialization
     void Start () {
-		
-	}
+        /*t += TestEndDay;
+        GameManager.instance.eventManager.AddEvent(t);*/
+        GameManager.instance.eventManager.eventEndDay += TestEndDay;
+    }
+
+    private void TestEndDay()
+    {
+        print("fin de journee");
+    }
 }

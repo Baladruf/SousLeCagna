@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TimeManager : MonoBehaviour {
 
     public static TimeManager instance;
+    [System.NonSerialized]
     public EventManager eventManager;
 
     public float nbSecondForOneMinuteInGame = 1.5f;
