@@ -9,6 +9,7 @@ public class EventManager : MonoBehaviour {
     [SerializeField] Text timerText;
     [SerializeField] int nbMinuteByPrint = 5;
     public TimeManager timeManager;
+    public GameManager gameManager;
 
     private void Awake()
     {

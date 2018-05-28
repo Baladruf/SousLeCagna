@@ -5,6 +5,7 @@ using UnityEngine;
 public class LetterManager : MonoBehaviour {
 
     public GameManager gameManager;
+    public DepotLettre depot;
 
     public class LetterEffect
     {

@@ -70,8 +70,8 @@ public class GameManager : MonoBehaviour {
     {
         instance = this;
         uiManager = uiMana;
-        playerManager = playerMana;
-        eventManager = eventMana;
+        (playerManager = playerMana).gameManager = this;
+        (eventManager = eventMana).gameManager = this;
         (letterManager = letterMana).gameManager = this;
     }
 

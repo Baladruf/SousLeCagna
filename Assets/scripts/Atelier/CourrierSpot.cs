@@ -46,10 +46,12 @@ public class CourrierSpot : Spot {
     protected override void specificiteAtelier()
     {
         courrierDispo = false;
-        for(int i = 0; i < prefabLettres.Length; i++)
+        int i;
+        for(i = 0; i < prefabLettres.Length; i++)
         {
             Instantiate(prefabLettres[i], positionLettre.position, Quaternion.identity);
         }
+        GameManager.instance.uiManager.infoTranche = (i == 1 ? "1 lettre est arrivé" : i + " lettres sont arrivés");
         //ajout 3 lettres
     }
 

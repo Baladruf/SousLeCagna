@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName ="ScriptableObjects/Paragraphe")]
 [System.Serializable]
@@ -20,6 +21,7 @@ public class Paragraphe : ScriptableObject {
     public void OnClick()
     {
         isCensor = !isCensor;
+        //animation rayure
     }
 
     public ConsequenceLetter SendInfo()

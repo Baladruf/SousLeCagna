@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
+    public GameManager gameManager;
+
     private int actualScrap;
     public int scrap
     {
@@ -58,14 +60,15 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    [SerializeField] Transform listSoldier;
+    public List<Soldier> soldiers { get; private set; }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Awake()
+    {
+        soldiers = new List<Soldier>();
+        for(int i = 0; i < listSoldier.childCount; i++)
+        {
+            soldiers.Add(listSoldier.GetChild(i).GetComponent<Soldier>());
+        }
+    }
 }

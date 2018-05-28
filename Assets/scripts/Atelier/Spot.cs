@@ -152,6 +152,7 @@ public abstract class Spot : MonoBehaviour {
         soldierTask.soldier.ResultEndTaskStress(name, stressTask);
         //gain de fin de tache
         print("tache finit");
+        specificiteAtelier();
         if (spotLooping)
         {
             soldierTask.timer = 0;     // obsolete -> soldierTask.coroutin = StartCoroutine(TimerTask(soldierTask));

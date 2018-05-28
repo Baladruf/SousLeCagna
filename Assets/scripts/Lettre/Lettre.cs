@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Lettre : MonoBehaviour {
 
@@ -23,6 +24,7 @@ public class Lettre : MonoBehaviour {
     public void Drop()
     {
         GameManager.instance.letterManager.courrierEffect.Add(new LetterManager.LetterEffect(nameOfSoldier, new ConsequenceLetter(moral_drop, commandement_drop, moral_grp_drop)));
+        Finish();
     }
 
     public void Accept()
@@ -36,5 +38,13 @@ public class Lettre : MonoBehaviour {
             letterResult.finalMoralGrp += typePara.finalMoralGrp;
         }
         GameManager.instance.letterManager.courrierEffect.Add(new LetterManager.LetterEffect(nameOfSoldier, letterResult));
+        Finish();
+    }
+
+    private void Finish()
+    {
+        transform.DOMoveY(-2, 0.5f);
+        Destroy(gameObject, 1);
+        GameManager.instance.letterManager.depot.isRead = false;
     }
 }
