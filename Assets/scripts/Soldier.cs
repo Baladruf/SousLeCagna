@@ -114,7 +114,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private void OnMouseDown()
     {
         GameManager.instance.soldierSelected = this;
-        GameManager.instance.uiManager.uISoldier.SetIdentitySoldier(photo, rank, DescriptionSoldier());
+        GameManager.instance.uiManager.uISoldier.SetIdentitySoldier(photo, rank, DescriptionSoldier(), this);
         GameManager.instance.uiManager.uIAtelier.DesactiveUI();
         //affiche ui
     }

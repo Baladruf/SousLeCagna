@@ -26,11 +26,11 @@ public class UISoldier : MonoBehaviour {
         }
 	}
 
-    public void SetIdentitySoldier(Sprite photo, Sprite rank, string[] soldierDes)
+    public void SetIdentitySoldier(Sprite photo, Sprite rank, string[] soldierDes, Soldier soldier)
     {
         photoSoldier.sprite = photo;
         rankIcon.sprite = rank;
-        //actualSoldier = soldier;
+        actualSoldier = soldier;
         photoSoldier.gameObject.SetActive(true);
 
         for(int i = 0; i < soldierDes.Length; i++)
