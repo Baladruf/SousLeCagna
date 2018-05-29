@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 8d9ddff4fd641534eb5894663452bdc3, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a8d68d0448a84a942b2f958d509b57a8, type: 2}
 --- !u!1 &28600338
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +399,7 @@ MonoBehaviour:
   posForSoldiers:
   - {fileID: 58812226}
   atelierDestress: 0
+  animSpot: 0
   spotLooping: 1
   delayTask: 5
   perkForTask: 0
@@ -817,7 +818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &239249764
 Transform:
   m_ObjectHideFlags: 0
@@ -844,7 +845,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1098427164}
   nbMinuteByPrint: 1
-  timeManager: {fileID: 0}
+  degatBombardement: 5
+  degatInvasionAllemand: 0
 --- !u!114 &239249766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,7 +858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3a99d0d11441347aa22fc3d072d216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventManager: {fileID: 0}
   nbSecondForOneMinuteInGame: 1.5
   hourBeginDay: 5
   hourEndDay: 23
@@ -1222,6 +1223,7 @@ MonoBehaviour:
   posForSoldiers:
   - {fileID: 330613412}
   atelierDestress: 0
+  animSpot: 0
   spotLooping: 1
   delayTask: 5
   perkForTask: 0
@@ -1389,7 +1391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &366268543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1755,10 +1757,12 @@ MonoBehaviour:
   rangSoldier: 0
   competence: 
   maxMoral: 0
+  maxHp: 50
   ratioStressTolerance: 1.2
   speedMove: 0
   photo: {fileID: 21300000, guid: 68d31d7ae09616d4b8c420759514f7c9, type: 3}
   rank: {fileID: 21300000, guid: a7645e78a29580d4b9fa46b14b1adb9e, type: 3}
+  bio: {fileID: 0}
 --- !u!23 &505417983
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1895,7 +1899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &529822504
 Transform:
   m_ObjectHideFlags: 0
@@ -2138,6 +2142,9 @@ MonoBehaviour:
   - {fileID: 66312127}
   - {fileID: 58341844}
   - {fileID: 1869847152}
+  InfoBiography: {fileID: 0}
+  Appear: 0
+  Disappear: 0
 --- !u!1 &553227145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,7 +2162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &553227146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2315,7 +2322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &613974941
 Transform:
   m_ObjectHideFlags: 0
@@ -2535,7 +2542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 119
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &807353289
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2711,7 +2718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &878823528
 Transform:
   m_ObjectHideFlags: 0
@@ -2747,7 +2754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &931334319
 Transform:
   m_ObjectHideFlags: 0
@@ -2774,6 +2781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMoralGrp: 0
   maxCommandement: 0
+  listSoldier: {fileID: 0}
 --- !u!1 &931476249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2879,7 +2887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &944644323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2898,10 +2906,12 @@ MonoBehaviour:
   rangSoldier: 0
   competence: 
   maxMoral: 0
+  maxHp: 50
   ratioStressTolerance: 1.2
   speedMove: 0
   photo: {fileID: 21300000, guid: 68d31d7ae09616d4b8c420759514f7c9, type: 3}
   rank: {fileID: 21300000, guid: a7645e78a29580d4b9fa46b14b1adb9e, type: 3}
+  bio: {fileID: 0}
 --- !u!23 &944644324
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3039,7 +3049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &948431840
 Transform:
   m_ObjectHideFlags: 0
@@ -3629,7 +3639,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1141766064}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.62, y: -0.36, z: -9.6}
+  m_LocalPosition: {x: 3.96, y: -0.36, z: -13.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 948431840}
@@ -3649,6 +3659,7 @@ MonoBehaviour:
   nbPlaceSoldier: 0
   posForSoldiers: []
   atelierDestress: 0
+  animSpot: 0
   spotLooping: 0
   delayTask: 5
   perkForTask: 0
@@ -3832,7 +3843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1231937057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3890,7 +3901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1250433001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4068,7 +4079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1330977024
 Light:
   m_ObjectHideFlags: 0
@@ -4351,10 +4362,12 @@ MonoBehaviour:
   rangSoldier: 0
   competence: 
   maxMoral: 0
+  maxHp: 50
   ratioStressTolerance: 1.2
   speedMove: 0
   photo: {fileID: 21300000, guid: 68d31d7ae09616d4b8c420759514f7c9, type: 3}
   rank: {fileID: 21300000, guid: a7645e78a29580d4b9fa46b14b1adb9e, type: 3}
+  bio: {fileID: 0}
 --- !u!23 &1414685495
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4769,7 +4782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1633563936
 Transform:
   m_ObjectHideFlags: 0
@@ -4801,6 +4814,8 @@ MonoBehaviour:
   uiMana: {fileID: 1753202466}
   playerMana: {fileID: 931334320}
   eventMana: {fileID: 239249765}
+  letterMana: {fileID: 0}
+  endDayMana: {fileID: 0}
   cursorSoldierSelected: {fileID: 269056770}
   spotWaiting: {fileID: 1513398324}
   mainCamera: {fileID: 2051105399}
@@ -5074,7 +5089,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1753202466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5088,6 +5103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soldierPrint: {fileID: 538769436}
   atelierPrint: {fileID: 1849440635}
+  infoTextTranche: {fileID: 0}
+  delayPrint: 2
+  delayFade: 0
 --- !u!4 &1753202467
 Transform:
   m_ObjectHideFlags: 0
@@ -5625,7 +5643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &2051105400
 AudioListener:
   m_ObjectHideFlags: 0

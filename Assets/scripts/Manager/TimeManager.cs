@@ -31,8 +31,13 @@ public class TimeManager : MonoBehaviour {
         (eventManager = GetComponent<EventManager>()).timeManager = this;
         InitButtonTime();
         minuteInGame = (hourBeginDay * 60) + minuteBeginDay;
-        eventManager.TimeEvent(minuteInGame);
+
 	}
+
+    void Start()
+    {
+        eventManager.TimeEvent(minuteInGame);
+    }
 	
 	// Update is called once per frame
 	void Update () {

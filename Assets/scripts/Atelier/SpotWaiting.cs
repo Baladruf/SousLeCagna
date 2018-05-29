@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpotWaiting : MonoBehaviour {
 
-    [SerializeField] Transform[] posSoldier;
+    public Transform[] posSoldier;
 
 	// Use this for initialization
 	void Start () {

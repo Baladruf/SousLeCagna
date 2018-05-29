@@ -18,6 +18,6 @@ public class SpotSurveillance : Spot {
 
     protected override void SetAnimeSoldierEndTask(Soldier soldier)
     {
-        soldier.SetAnimSpot(EnumDefine.AnimSpot.research, true);
+        soldier.SetAnimSpot(EnumDefine.AnimSpot.mitrailleuse, true);
     }
 }

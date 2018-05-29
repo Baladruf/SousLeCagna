@@ -29,5 +29,6 @@ public class GroundOption : MonoBehaviour {
         GameManager.instance.ResetCursor();
         GameManager.instance.uiManager.uIAtelier.DesactiveUI();
         GameManager.instance.uiManager.uISoldier.ResetUI();
+        print("ground");
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -12,6 +13,8 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private NavMeshAgent agent;
     private Animator animator;
     private Rigidbody rigi;
+
+    public int idpos;
 
     //property soldier
     public string nameSoldier;
@@ -117,6 +120,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
             case EnumDefine.AnimSpot.walkBox:
                 break;
             case EnumDefine.AnimSpot.mitrailleuse:
+                animator.SetBool("gunplay mitrailleuseB", (bool)val);
                 break;
             case EnumDefine.AnimSpot.research:
                 break;
@@ -156,7 +160,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private void OnMouseDown()
     {
         GameManager.instance.soldierSelected = this;
-        GameManager.instance.uiManager.uISoldier.SetIdentitySoldier(photo, rank, DescriptionSoldier(), this);
+        GameManager.instance.uiManager.uISoldier.SetIdentitySoldier(photo, rank, bio, DescriptionSoldier(), this);
         GameManager.instance.uiManager.uIAtelier.DesactiveUI();
         //affiche ui
     }
@@ -235,7 +239,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         hasWork = false;
         hasTask = null;
         agent.isStopped = false;
-        agent.SetDestination(GameManager.instance.spotWaiting.transform.position);
+        agent.SetDestination(GameManager.instance.spotWaiting.GetComponent<SpotWaiting>().posSoldier[idpos].position);
     }
 
     public bool HasPerk(EnumDefine.Perks perk)
@@ -301,10 +305,11 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     #region UIPrint
     [SerializeField] Sprite photo;
     [SerializeField] Sprite rank;
+    [SerializeField] Text bio;
 
     public string[] DescriptionSoldier()
     {
-        return new string[] { nameSoldier, rank.name, listPerks[0].ToString(), hp.ToString(), moral.ToString()};
+        return new string[] { nameSoldier, rank.name, "perk : "+listPerks[0].ToString(), "hp : " + hp.ToString(), "moral : " + moral.ToString()};
     }
     #endregion
 
