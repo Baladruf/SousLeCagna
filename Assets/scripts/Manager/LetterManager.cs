@@ -45,4 +45,25 @@ public class LetterManager : MonoBehaviour {
     {
         courrierEffect.Clear();
     }
+
+    public void LetterEndDay()
+    {
+        var soldiers = gameManager.playerManager.soldiers;
+        for(int i = 0; i < soldiers.Count; i++)
+        {
+            for(int j = 0; j < courrierEffect.Count; j++)
+            {
+                if(soldiers[i].nameSoldier == courrierEffect[j].nameSoldier)
+                {
+                    if(courrierEffect[j].typeRecu != TypeRecu.drop)
+                    {
+                        soldiers[i].SetAnimSpot(EnumDefine.AnimSpot.read_letter, true);
+                    }
+                    soldiers[i].moral += courrierEffect[j].effect.finalMoral;
+                    gameManager.playerManager.moralGroup += courrierEffect[j].effect.finalMoralGrp;
+                    gameManager.playerManager.commandement += courrierEffect[j].effect.finalCommandement;
+                }
+            }
+        }
+    }
 }

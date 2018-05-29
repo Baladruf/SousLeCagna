@@ -32,6 +32,7 @@ public class EnumDefine {
     {
         endDay,
         bombardement,
-        letter
+        letter,
+        InvasionAllemand
     }
 }

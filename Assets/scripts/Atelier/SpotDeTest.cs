@@ -23,4 +23,9 @@ public class SpotDeTest : Spot {
     {
         print("fin de journee");
     }
+
+    protected override void SetAnimeSoldierEndTask(Soldier soldier)
+    {
+        
+    }
 }

@@ -12,6 +12,8 @@ public class EventManager : MonoBehaviour {
     public TimeManager timeManager;
     [System.NonSerialized]
     public GameManager gameManager;
+    [SerializeField] int degatBombardement = 5;
+    [SerializeField] int degatInvasionAllemand;
 
 
     private void Awake()
@@ -19,7 +21,8 @@ public class EventManager : MonoBehaviour {
         calendarEvent = new List<Event>();
         //print(eventEndDay);
         //eventEndDay += Start();
-        calendarEvent.Add(new Event("TestEndDay", "juste un test fin de journee", (5 * 60) + 10, EnumDefine.NameEvent.endDay));
+        calendarEvent.Add(new Event("TestEndDay", "juste un test fin de journee", (5 * 60) + 10, 100, EnumDefine.NameEvent.endDay));
+        //calendarEvent.Add(new Event("TestInvasion", "test de l'event invasion", (5 * 60) + 30, 100, EnumDefine.NameEvent.bombardement));
         //print(calendarEvent[0].eventTime);
         //eventTest.eventTime.DynamicInvoke();
     }
@@ -72,21 +75,29 @@ public class EventManager : MonoBehaviour {
 
     public delegate void EventEndDay();
     public event EventEndDay eventEndDay;
+
+    public delegate void EventBombardement(int degat);
+    public event EventBombardement eventBombardement;
+
+    public delegate void EventInvasionAllemand(int degat);
+    public event EventInvasionAllemand eventInvasionAllemand;
     #endregion
 
     #region Event
-    private struct Event
+    private class Event
     {
         public string name;
         public string description;
         public int heureDeDeclenchement;
+        public float probaAppear;
         public EnumDefine.NameEvent eventName;
 
-        public Event(string n, string d, int t, EnumDefine.NameEvent nameEvent)
+        public Event(string n, string d, int t, float p, EnumDefine.NameEvent nameEvent)
         {
             name = n;
             description = d;
             heureDeDeclenchement = t;
+            probaAppear = p;
             eventName = nameEvent;
         }
     }
@@ -96,13 +107,67 @@ public class EventManager : MonoBehaviour {
         switch (eventN)
         {
             case EnumDefine.NameEvent.endDay:
-                eventEndDay();
+                if (eventEndDay != null)
+                {
+                    eventEndDay();
+                }
+                gameManager.endDayManager.CallEndDay();
                 break;
             case EnumDefine.NameEvent.bombardement:
+                if(eventBombardement != null)
+                {
+                    //eventBombardement(degatBombardement);
+                    StartCoroutine(MiseEnSceneBombarde(0));
+                }
                 break;
             case EnumDefine.NameEvent.letter:
-                eventLetter();
+                if (eventLetter != null)
+                {
+                    eventLetter();
+                }
                 break;
+            case EnumDefine.NameEvent.InvasionAllemand:
+                if(eventInvasionAllemand != null)
+                {
+                    eventInvasionAllemand(degatInvasionAllemand);
+                }
+                break;
+        }
+    }
+
+    public void ReduceProbaEventInvasionAllemand(float proba)
+    {
+        for(int i = 0; i < calendarEvent.Count; i++)
+        {
+            if(calendarEvent[i].eventName == EnumDefine.NameEvent.InvasionAllemand)
+            {
+                calendarEvent[i].probaAppear -= proba;
+                if(calendarEvent[i].probaAppear <= 0)
+                {
+                    calendarEvent.RemoveAt(i);
+                    gameManager.uiManager.infoTranche = "Une invasion allemand surprise a été stopper !";
+                    return;
+                }
+            }
+        }
+    }
+
+    private IEnumerator MiseEnSceneBombarde(int nb)
+    {
+        yield return new WaitForSeconds(2);
+        if (eventBombardement != null)
+        {
+            eventBombardement(degatBombardement);
+            print("bombard !!!");
+            //inserer effet bombardement
+        }
+        if (nb < 3)
+        {
+            StartCoroutine(MiseEnSceneBombarde(nb + 1));
+        }
+        else
+        {
+            gameManager.uiManager.infoTranche = "Fin des bombardements !!!";
         }
     }
     #endregion

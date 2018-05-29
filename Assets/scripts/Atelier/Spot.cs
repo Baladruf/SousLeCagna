@@ -93,7 +93,7 @@ public abstract class Spot : MonoBehaviour {
         actualPlace--;
     }
 
-    public void SetTaskSoldier(Soldier soldier)
+    public virtual void SetTaskSoldier(Soldier soldier)
     {
         soldier.transform.position = posForSoldiers[actualPlace - 1].position;
         for (int i = 0; i < listTask.Length; i++)
@@ -104,7 +104,7 @@ public abstract class Spot : MonoBehaviour {
                 break;
             }
         }
-        soldier.SetAnimSpot(animSpot);
+        //soldier.SetAnimSpot(animSpot);
         //set animation
         //demarrer timer
     }
@@ -147,6 +147,8 @@ public abstract class Spot : MonoBehaviour {
         EndTask(task);
     }
 
+    protected abstract void SetAnimeSoldierEndTask(Soldier soldier);
+
     protected void EndTask(SoldierTask soldierTask)
     {
         soldierTask.soldier.ResultEndTaskStress(name, stressTask);
@@ -160,6 +162,7 @@ public abstract class Spot : MonoBehaviour {
         else
         {
             soldierTask.soldier.BackWaitingZone();
+            SetAnimeSoldierEndTask(soldierTask.soldier);
             soldierTask.soldier = null;
             soldierTask.statActiveTask = false;
         }
@@ -183,6 +186,7 @@ public abstract class Spot : MonoBehaviour {
             return;
         }
         soldierTask.soldier.EndCurrentWork();
+        SetAnimeSoldierEndTask(soldierTask.soldier);
         soldierTask.soldier = null;
         soldierTask.statActiveTask = false;
         /*if (soldierTask.coroutine != null) {

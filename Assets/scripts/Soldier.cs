@@ -14,14 +14,54 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private Rigidbody rigi;
 
     //property soldier
-    [SerializeField] string nameSoldier;
+    public string nameSoldier;
     [SerializeField] EnumDefine.RankMilitary rangSoldier;
     [SerializeField] EnumDefine.Perks[] competence;
     private List<EnumDefine.Perks> listPerks;
 
     [SerializeField] float maxMoral;
-    private float moral;
-    private float hp;
+    private float actualMoral;
+    public float moral
+    {
+        get
+        {
+            return actualMoral;
+        }
+        set
+        {
+            actualMoral = value;
+            if (value > 0)
+            {
+
+            }
+            else if (value < 0)
+            {
+
+            }
+        }
+    }
+
+    [SerializeField] float maxHp = 50;
+    private float actualHp;
+    public float hp
+    {
+        get
+        {
+            return actualHp;
+        }
+        set
+        {
+            actualHp = value;
+            if(value > 0)
+            {
+
+            }
+            else if(value < 0)
+            {
+
+            }
+        }
+    }
 
     private Spot hasTask = null;
     private bool hasWork = false;
@@ -33,6 +73,8 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     [SerializeField] float speedMove; // a voir
     private string animEnCour;
+    private bool isDead = false;
+    private bool sousCagna = false;
 
     #region animation
     //private float speedAnim = 0;
@@ -56,7 +98,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         }
     }
 
-    public void SetAnimSpot(EnumDefine.AnimSpot anim)
+    public void SetAnimSpot(EnumDefine.AnimSpot anim, object val)
     {
         switch (anim)
         {
@@ -127,6 +169,18 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
             hasWork = true;
             hasTask.SetTaskSoldier(this);
         }
+        if(other.tag == "Cagna")
+        {
+            sousCagna = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Cagna")
+        {
+            sousCagna = false;
+        }
     }
 
     // Use this for initialization
@@ -140,11 +194,14 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         agent = GetComponent<NavMeshAgent>();
         animator = transform.GetChild(0).GetComponent<Animator>();
         rigi = GetComponent<Rigidbody>();
+        hp = maxHp;
+        moral = maxMoral;
     }
 
     private void Start()
     {
         GameManager.instance.eventManager.eventSoldier += EventEffect;
+        GameManager.instance.eventManager.eventBombardement += EventEffectBombard;
     }
 
     // Update is called once per frame
@@ -223,6 +280,24 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         moral = Mathf.Max(0, Mathf.Min(maxMoral, moral - perteMoral));
     }
 
+    private void EventEffectBombard(int degat)
+    {
+        if (sousCagna)
+        {
+            print("proteger");
+        }
+        else
+        {
+            print("j'ai mal, au s'cour");
+            hp -= degat;
+            if (hp <= 0)
+            {
+                animator.SetBool("dead", true);
+                isDead = true;
+            }
+        }
+    }
+
     #region UIPrint
     [SerializeField] Sprite photo;
     [SerializeField] Sprite rank;
@@ -232,4 +307,13 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         return new string[] { nameSoldier, rank.name, listPerks[0].ToString(), hp.ToString(), moral.ToString()};
     }
     #endregion
+
+    public void BreakTask()
+    {
+        if (hasTask != null)
+        {
+            hasTask.BreakTask(this);
+            hasTask.FreePlace();
+        }
+    }
 }

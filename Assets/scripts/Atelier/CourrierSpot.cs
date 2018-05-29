@@ -66,4 +66,15 @@ public class CourrierSpot : Spot {
             meshRenderer.material.color = Color.black;
         }
     }
+
+    protected override void SetAnimeSoldierEndTask(Soldier soldier)
+    {
+        soldier.SetAnimSpot(animSpot, false);
+    }
+
+    public override void SetTaskSoldier(Soldier soldier)
+    {
+        base.SetTaskSoldier(soldier);
+        soldier.SetAnimSpot(animSpot, true);
+    }
 }
