@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -61,7 +62,7 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private void OnMouseDown()
     {
         GameManager.instance.soldierSelected = this;
-        GameManager.instance.uiManager.uISoldier.SetIdentitySoldier(photo, rank, this);
+        GameManager.instance.uiManager.uISoldier.SetIdentitySoldier(photo, rank, bio, this);
         GameManager.instance.uiManager.uIAtelier.DesactiveUI();
         //affiche ui
     }
@@ -168,5 +169,6 @@ public class Soldier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     #region UIPrint
     [SerializeField] Sprite photo;
     [SerializeField] Sprite rank;
+    [SerializeField] Text bio;
     #endregion
 }

@@ -8,6 +8,7 @@ public class ScriptCradUI : MonoBehaviour
 
 	public KeyCode Appear;
 	public KeyCode Disappear;
+	
 	private void Update()
 	{
 		if (Input.GetKeyDown(Appear))
