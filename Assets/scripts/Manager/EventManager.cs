@@ -14,6 +14,7 @@ public class EventManager : MonoBehaviour {
     public GameManager gameManager;
     [SerializeField] int degatBombardement = 5;
     [SerializeField] int degatInvasionAllemand;
+    public ParticleSystem[] listParticleBomb;
 
 
     private void Awake()
@@ -21,8 +22,8 @@ public class EventManager : MonoBehaviour {
         calendarEvent = new List<Event>();
         //print(eventEndDay);
         //eventEndDay += Start();
-        //calendarEvent.Add(new Event("TestEndDay", "juste un test fin de journee", (5 * 60) + 10, 100, EnumDefine.NameEvent.endDay));
-        //calendarEvent.Add(new Event("TestInvasion", "test de l'event invasion", (5 * 60) + 30, 100, EnumDefine.NameEvent.bombardement));
+        calendarEvent.Add(new Event("TestEndDay", "juste un test fin de journee", (5 * 60) + 10, 80, EnumDefine.NameEvent.InvasionAllemand));
+        calendarEvent.Add(new Event("TestInvasion", "test de l'event invasion", (5 * 60) + 20, 100, EnumDefine.NameEvent.bombardement));
         //print(calendarEvent[0].eventTime);
         //eventTest.eventTime.DynamicInvoke();
     }
@@ -118,6 +119,7 @@ public class EventManager : MonoBehaviour {
                 {
                     //eventBombardement(degatBombardement);
                     StartCoroutine(MiseEnSceneBombarde(0));
+                    StartCoroutine(ExplosionsBombarde());
                 }
                 break;
             case EnumDefine.NameEvent.letter:
@@ -145,7 +147,7 @@ public class EventManager : MonoBehaviour {
                 if(calendarEvent[i].probaAppear <= 0)
                 {
                     calendarEvent.RemoveAt(i);
-                    gameManager.uiManager.infoTranche = "Une invasion allemand surprise a été stopper !";
+                    gameManager.uiManager.infoTranche = "Attention, un éclaireur allemand est aperçu par Léon !";
                     return;
                 }
             }
@@ -161,7 +163,7 @@ public class EventManager : MonoBehaviour {
             print("bombard !!!");
             //inserer effet bombardement
         }
-        if (nb < 3)
+        if (nb < 6)
         {
             StartCoroutine(MiseEnSceneBombarde(nb + 1));
         }
@@ -169,6 +171,33 @@ public class EventManager : MonoBehaviour {
         {
             gameManager.uiManager.infoTranche = "Fin des bombardements !!!";
         }
+    }
+
+    private IEnumerator ExplosionsBombarde()
+    {
+        listParticleBomb[0].Play();
+        yield return new WaitForSeconds(2f);
+        listParticleBomb[1].Play();
+        yield return new WaitForSeconds(1f);
+        listParticleBomb[2].Play();
+        yield return new WaitForSeconds(1f);
+        listParticleBomb[3].Play();
+        yield return new WaitForSeconds(2f);
+        listParticleBomb[4].Play();
+
+        yield return new WaitForSeconds(0.5f);
+
+        listParticleBomb[0].Play();
+        yield return new WaitForSeconds(1.5f);
+        listParticleBomb[1].Play();
+        yield return new WaitForSeconds(1f);
+        listParticleBomb[2].Play();
+        yield return new WaitForSeconds(1f);
+        listParticleBomb[3].Play();
+        yield return new WaitForSeconds(2f);
+        listParticleBomb[4].Play();
+
+
     }
     #endregion
 }
